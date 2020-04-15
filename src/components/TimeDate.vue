@@ -37,13 +37,22 @@ export default {
     }
   },
   methods: {
+    /**
+     * Gets the locations and saves them in data.
+     */
     getLocations: async function(){
       this.locations = (await Api.locations(this.selectedArea));
     },
+    /**
+     * Gets and formats the time for the picked location.
+     */
     getTime: async function(){
       this.time = (await Api.time(this.selectedLocation)).datetime.substring(12,19);
     }
   },
+  /**
+   * Runs functions before mounting, to avoid awkward markup.
+   */
   async beforeMount() {
     await this.getLocations();
     await this.getTime();

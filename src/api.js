@@ -14,10 +14,20 @@ export default class Api  {
     });
   }
 
+  /**
+   * Gets locations from api.
+   * @params timezone - string
+   * @return array<string>
+   */
   static async locations (timezone) {
     return (await this.call().get("/timezone/" + timezone)).data;
   }
 
+  /**
+   * Gets time object from api.
+   * @params locations - string
+   * @return Obj
+   */
   static async time (location) {
     return (await this.call().get("/timezone/" + location)).data;
   }
