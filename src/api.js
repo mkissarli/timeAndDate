@@ -14,10 +14,14 @@ export default class Api  {
     });
   }
 
+  static async locations (timezone) {
+    return (await this.call().get("/timezone/" + timezone)).data;
+  }
+
   static headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': '*'
+    //'Access-Control-Allow-Origin': '*',
+    //'Access-Control-Allow-Headers': '*'
   }
 }
