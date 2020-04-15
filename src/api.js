@@ -18,6 +18,10 @@ export default class Api  {
     return (await this.call().get("/timezone/" + timezone)).data;
   }
 
+  static async time (location) {
+    return (await this.call().get("/timezone/" + location)).data;
+  }
+
   static headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
