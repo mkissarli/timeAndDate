@@ -32,7 +32,7 @@ export default {
       area: ["Africa", "America", "Asia", "Atlantic", "Australia", "Europe", "Indian", "Pacific"],
       selectedArea: "Europe",
       locations: [],
-      selectedLocation: "London",
+      selectedLocation: "Europe/London",
       time: "",
     }
   },
@@ -43,6 +43,10 @@ export default {
     getTime: async function(){
       this.time = (await Api.time(this.selectedLocation)).datetime.substring(12,19);
     }
+  },
+  async beforeMount() {
+    await this.getLocations();
+    await this.getTime();
   }
 }
 </script>
