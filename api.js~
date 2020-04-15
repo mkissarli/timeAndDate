@@ -1,0 +1,14 @@
+import axios from 'axios';
+
+/*
+ * Api class with all the Api calls.
+ */
+export default class Api  {
+  static call () {
+    return axios.create({
+      baseURL: 'http://worldtimeapi.org/api',
+      withCredentials: false,
+      headers: Api.headers
+    });
+  }
+}
