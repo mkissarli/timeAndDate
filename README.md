@@ -1,4 +1,4 @@
-# tester
+# Time and Date for Locations based on World Time API
 
 ## Project setup
 ```
