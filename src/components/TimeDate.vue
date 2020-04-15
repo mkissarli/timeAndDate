@@ -47,7 +47,7 @@ export default {
      * Gets and formats the time for the picked location.
      */
     getTime: async function(){
-      this.time = (await Api.time(this.selectedLocation)).datetime.substring(12,19);
+      this.time = (await Api.time(this.selectedLocation)).datetime.substring(11,19);
     }
   },
   /**
