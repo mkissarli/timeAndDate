@@ -6,12 +6,12 @@
   </select>
 
   <label> What location? </label>
-  <select id="locationPicker" v-model="selectedLocation" @change="formatTime">
+  <select id="locationPicker" v-model="selectedLocation" @change="getTime">
     <option v-for="l in locations" v-bind:key="l" v-bind:value="l">
-      {{ l.substring(selectedLocation.length + 1) }}
+      {{ l.substring(selectedArea.length + 1).replace("_", " ") }}
     </option>
   </select>
-  <p>{{ time }}</p>
+  <p>The time is {{ time }} in {{ selectedLocation.replace("_", " ").split("/").reverse().join(", ") }}</p>
 </div>
 </template>
 
@@ -20,32 +20,21 @@ import Api from "@/api.js";
   
 export default {
   name: 'TimeDate',
-  props: {
-  },
   data(){
     return {
       area: ["Africa", "America", "Asia", "Atlantic", "Australia", "Europe", "Indian", "Pacific"],
       selectedArea: "Europe",
       locations: [],
       selectedLocation: "London",
-      time: ""
+      time: "",
     }
   },
   methods: {
     getLocations: async function(){
       this.locations = (await Api.locations(this.selectedArea));
-	//.forEach(e => e.substring(this.selectedLocation.length + 1));
     },
     getTime: async function(){
-      return (await Api.time(this.selectedLocation));
-    },
-    formatTime: async function() {
-      var unix = (await this.getTime()).unixtime;
-      var date = new Date(unix * 1000);
-      var hours = date.getHours();
-      var minutes = "0" + date.getMinutes();
-      var seconds = "0" + date.getSeconds();
-      this.time = (hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2));
+      this.time = (await Api.time(this.selectedLocation)).datetime.substring(12,19);
     }
   }
 }
