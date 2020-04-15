@@ -1,17 +1,24 @@
 <template>
 <div class="timeDateDash">
-  <label> Which area would you like to pick? </label>
-  <select id="areaPicker" v-model="selectedArea" @change="getLocations">
-    <option v-for="a in area" v-bind:key="a" v-bind:value="a"> {{ a }} </option>
-  </select>
+  <div class="selectArea">
+    <label> Which area would you like to pick? </label>
+    <select id="areaPicker" v-model="selectedArea" @change="getLocations">
+      <option v-for="a in area" v-bind:key="a" v-bind:value="a"> {{ a }} </option>
+    </select>
+  </div>
 
-  <label> What location? </label>
-  <select id="locationPicker" v-model="selectedLocation" @change="getTime">
-    <option v-for="l in locations" v-bind:key="l" v-bind:value="l">
-      {{ l.substring(selectedArea.length + 1).replace("_", " ") }}
-    </option>
-  </select>
-  <p>The time is {{ time }} in {{ selectedLocation.replace("_", " ").split("/").reverse().join(", ") }}</p>
+  <div class="selectLocation">
+    <label> What location? </label>
+    <select id="locationPicker" v-model="selectedLocation" @change="getTime">
+      <option v-for="l in locations" v-bind:key="l" v-bind:value="l">
+	{{ l.substring(selectedArea.length + 1).replace("_", " ") }}
+      </option>
+    </select>
+  </div>
+  
+  <p class="time">
+    The time is {{ time }} in {{ selectedLocation.replace("_", " ").split("/").reverse().join(", ") }}
+  </p>
 </div>
 </template>
 
