@@ -1,5 +1,10 @@
 # Time and Date for Locations based on World Time API
 
+Simple app that gets the local times, made for a takehome. Uses World Time API
+and VueJS.
+
+![Demo](readme_resources/demo.gif)
+
 ## Project setup
 ```
 npm install
